@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import web.model.Car;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -22,6 +23,10 @@ public class CarService {
     }
 
     public List<Car> findLimited(int count) {
+        if (count <= 0) {
+
+            return Collections.emptyList();
+        }
         return cars.subList(0, Math.min(count, cars.size()));
     }
 }
